@@ -1,3 +1,4 @@
+-- Create index
 CREATE INDEX idx_target_Customers_email
 ON target_Customers (email);
 

@@ -1,3 +1,4 @@
+-- Create DDL
 CREATE TABLE target_Customers (
   customerId INTEGER,
   title VARCHAR(5),

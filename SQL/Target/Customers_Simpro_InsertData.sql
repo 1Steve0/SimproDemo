@@ -1,3 +1,4 @@
+--Insert Data into Target Table Customers
 INSERT INTO target_Customers (
   customerId,
   title,
