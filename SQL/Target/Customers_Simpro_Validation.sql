@@ -19,6 +19,7 @@ CREATE TABLE Simpro_Customers_Error_Logs (
 );
 
 -- Insert data into the Simpro_Customers_Error_Logs table
+--1) Error with first character of address causing street number to be lost
 INSERT INTO Simpro_Customers_Error_Logs (
   customerId,
   errorField,
@@ -37,7 +38,7 @@ INSERT INTO Simpro_Customers_Error_Logs (
 SELECT
   c.customerId,
   'Address1' AS errorField,
-  'Space as first character of Address Field' AS errorMessage,
+  'Street number is null' AS errorMessage,
   null AS title,
   c.firstName,
   c.lastName,
@@ -49,4 +50,38 @@ SELECT
   c.zipcode,
   c.email
 FROM customer c
-WHERE c.address LIKE ' %';
+JOIN target_Customers tc on c.customerId=tc.customerId;
+WHERE t.streetNumber is null;
+
+--2) Error with spaces in email address
+INSERT INTO Simpro_Customers_Error_Logs (
+  customerId,
+  errorField,
+  errorMessage,
+  title,
+  firstName,
+  lastName,
+  preferredname,
+  fullName,
+  streetnumber,
+  address,
+  city,
+  zipcode,
+  email
+)
+SELECT
+  c.customerId,
+  'Email1' AS errorField,
+  'Space in Email' AS errorMessage,
+  null AS title,
+  c.firstName,
+  c.lastName,
+  c.firstName AS preferredname, 
+  c.firstName || ' ' || c.lastName AS fullName,
+  SUBSTR(c.address, 1, INSTR(c.address, ' ') - 1) AS streetnumber,
+  SUBSTR(c.address, INSTR(c.address, ' ') + 1) AS address,
+  UPPER(c.city) AS city,
+  c.zipcode,
+  c.email
+FROM customer c
+WHERE c.email LIKE ' %' OR c.email LIKE '% ' OR c.email LIKE '% %'  ;

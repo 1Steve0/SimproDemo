@@ -1,0 +1,9 @@
+Based off the LinkedIn CarsForAll SQLLite Database.
+
+1) If required load the source tables (done once)
+2) Target
+	- Customers_Simpro_CreateDDL. Creates target_Customers table to the CarsForAll database with data types
+	- Customers_Simpro_InsertData. Insert manipulated data in to target_Customers
+	- Customers_Simpro_CreateIndex. Create Index on target_Customers
+	- Customers_Simpro_Validation. Creates Simpro_Customers_Error_Logs. Runs a few simple error checks and populates table. Note that Dbeaver only executes one command inside each file. Yet to find setting to enable multiple commands to execute.
+	- 
