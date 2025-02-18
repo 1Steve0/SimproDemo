@@ -50,8 +50,8 @@ SELECT
   c.zipcode,
   c.email
 FROM customer c
-JOIN target_Customers tc on c.customerId=tc.customerId;
-WHERE t.streetNumber is null;
+JOIN target_Customers tc on c.customerId=tc.customerId 
+WHERE tc.streetNumber IS NULL OR tc.streetNumber = '';
 
 --2) Error with spaces in email address
 INSERT INTO Simpro_Customers_Error_Logs (
