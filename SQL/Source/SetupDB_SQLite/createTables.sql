@@ -8,7 +8,7 @@ employeeId INTEGER PRIMARY KEY,
 firstName varchar(50),
 lastName varchar(50),
 title varchar(50),
-startDate datetime,
+startDate TIMESTAMP,
 managerId int
 );
 
